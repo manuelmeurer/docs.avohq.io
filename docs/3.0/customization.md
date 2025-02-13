@@ -329,7 +329,7 @@ end
 
 Using `find_record_method` you tell Avo how to fetch one record for `Show` and `Edit` views and other contexts where a record needs to be fetched from the database.
 
-This is very useful when you use something like `friendly` gem, custom `to_param` methods on your model, and even the wonderful `prefix_id` gem.
+This is very useful when you use something like `friendly` gem, custom `to_param` methods on your model, and even the wonderful `prefixed_ids` gem.
 
 #### Custom `to_param` method
 
