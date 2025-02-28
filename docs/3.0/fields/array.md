@@ -52,8 +52,6 @@ Here, the `attendees` field will use the `attendees` method from the `Course` mo
 
 ### Example 3: Fallback to the `records` method
 
-If neither the block nor the model's method exists, Avo will fall back to the `records` method defined in the resource used to render the array field. This is useful for providing a default dataset.
-
 When neither a block nor a model's method is defined, Avo will fall back to the `records` method in the resource used to render the field. This is a handy fallback for providing default datasets:
 
 ```ruby
@@ -68,7 +66,8 @@ end
 
 ## Summary of Data Fetching Hierarchy
 
-When using `has_many` with `array: true`, Avo will fetch data in the following order:
+When using an array field, Avo will fetch data in the following order:
+
 1. Use data returned by the **block** provided in the field.
 2. Fetch data from the **associated model method** (e.g., `Course#attendees`).
 3. Fall back to the **`records` method** defined in the resource.
