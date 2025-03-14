@@ -139,19 +139,17 @@ class Action
     # Accessing the parameters passed from the parent view
     field :some_field, as: :hidden, default: -> {
       # Parsing the request referer to extract parameters
-      parent_params = URI.parse(request.referer).query.split("&").map { |param| param.split("=")}.to_h.with_indifferent_access
-      # Checking if the `hei` parameter equals `ya`
-      if parent_params[:hey] == 'ya'
-        :yes
-      else
+      parent_params = Rack::Utils.parse_query(URI(request.referer).query).with_indifferent_access
+      # Checking if the `hey` parameter equals `ya`
+      parent_params[:hey] == 'ya' ?
+        :yes :
         :no
-      end
     }
   end
 end
 ```
-Parse the `request.referer` to extract parameters using `URI.parse`.
-Split the query string into key-value pairs and convert it into a hash.
+Parse the `request.referer` to extract the query string using `URI().query`.
+Parse the query string using `Rack::Utils.parse_query` and convert it into a hash with indifferent access.
 Check if the `hey` parameter equals `ya`, and set the default value of `some_field` accordingly.
 
 ## Action responses
